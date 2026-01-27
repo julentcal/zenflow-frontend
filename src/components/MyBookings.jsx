@@ -3,10 +3,9 @@ import { API_URL } from '../config';
 
 export function MyBookings({ token }) {
     const [bookings, setBookings] = useState([]);
-    const [loading, setLoading] = useState(true); // Estado de carga para evitar errores visuales
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
-        // DEFINIMOS LA FUNCIÓN DENTRO DEL EFFECT (Más seguro)
         const fetchBookings = async () => {
             try {
                 const response = await fetch(`${API_URL}/my-bookings`, {
@@ -18,25 +17,22 @@ export function MyBookings({ token }) {
 
                 const data = await response.json();
 
-                // COMPROBAMOS QUE SEA UN ARRAY antes de guardar
                 if (Array.isArray(data)) {
                     setBookings(data);
                 } else {
                     console.error("La API no devolvió una lista:", data);
-                    // Si el token caducó, podríamos vaciar la lista
                     setBookings([]); 
                 }
             } catch (err) {
                 console.error("Error al cargar reservas:", err);
             } finally {
-                setLoading(false); // Terminó de cargar (bien o mal)
+                setLoading(false); 
             }
         };
 
-        // LLAMAMOS A LA FUNCIÓN
         if (token) fetchBookings();
         
-    }, [token]); // Se ejecuta cada vez que cambia el token
+    }, [token]); 
 
     const handleCancel = async (bookingId) => {
         if(!confirm('¿Seguro que quieres cancelar esta clase?')) return;
@@ -69,12 +65,11 @@ export function MyBookings({ token }) {
 
     return (
         <div style={{ marginTop: '20px' }}>
-            <h2>📅 Mis Reservas Confirmadas</h2>
+            <h2>Mis Reservas Confirmadas</h2>
             <ul className="booking-list">
                 {bookings.map(booking => (
                     <li key={booking.id} className="booking-item">
                         <div>
-                            {/* Usamos el operador ?. por si acaso booking.yoga_class no vino bien */}
                             <h3 className="card-title" style={{fontSize: '1.1em'}}>
                                 {booking.yoga_class?.name || 'Clase no disponible'}
                             </h3>

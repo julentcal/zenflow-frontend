@@ -23,7 +23,6 @@ export function Login({ onLoginSuccess }) {
             const data = await response.json();
 
             if (response.ok) {
-                // Guardamos el token y avisamos a App.jsx
                 localStorage.setItem('ACCESS_TOKEN', data.access_token);
                 onLoginSuccess(data.access_token);
             } else {

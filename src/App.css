@@ -1,34 +1,30 @@
-/* --- 0. IMPORTAR FUENTES (Google Fonts) --- */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
 #root {
   width: 100%;
   min-height: 100vh;
-  display: block; /* Importante para que el margen auto funcione dentro */
+  display: block; 
 }
 
 :root {
-  /* Paleta extraída de la imagen */
-  --bg-color: #F9F7F2;       /* Crema suave (Fondo general) */
-  --card-bg: #FFFFFF;        /* Blanco puro (Tarjetas) */
-  --primary: #A67B5B;        /* Moka / Canela (Botones principales) */
-  --primary-hover: #8D664A;  /* Moka más oscuro */
-  --secondary: #E0D8D0;      /* Beige grisáceo (Bordes/Detalles) */
-  --text-main: #3D3D3D;      /* Carbón suave (Texto principal) */
-  --text-muted: #7A7A7A;     /* Gris medio (Textos secundarios) */
+  --bg-color: #F9F7F2;      
+  --card-bg: #FFFFFF;       
+  --primary: #A67B5B;     
+  --primary-hover: #8D664A;  
+  --secondary: #E0D8D0;    
+  --text-main: #3D3D3D;    
+  --text-muted: #7A7A7A;    
   
-  /* Colores funcionales adaptados al estilo */
-  --success: #749F82;        /* Verde Salvia (Confirmado) */
-  --success-bg: #E8F3EB;     /* Fondo verde muy pálido */
-  --danger: #C06C64;         /* Rojo Terracota (Cancelar) */
-  --danger-bg: #FDF2F2;      /* Fondo rojo pálido */
+  --success: #749F82;        
+  --success-bg: #E8F3EB;     
+  --danger: #C06C64;         
+  --danger-bg: #FDF2F2;      
 
-  /* Sombras más suaves */
   --shadow: 0 10px 30px -10px rgba(166, 123, 91, 0.15);
 }
 
 body {
-  margin: 0; /* Asegúrate de que esto esté a 0 */
+  margin: 0; 
   font-family: 'Lato', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-main);
@@ -37,13 +33,12 @@ body {
 
 .container {
   max-width: 1200px;
-  margin: 0 auto; /* AHORA SÍ FUNCIONARÁ */
+  margin: 0 auto; 
   padding: 40px 20px;
 }
 
-/* --- TÍTULOS ELEGANTES --- */
 h1, h2, h3 {
-  font-family: 'Playfair Display', serif; /* Fuente elegante */
+  font-family: 'Playfair Display', serif; 
   color: var(--text-main);
   letter-spacing: -0.5px;
 }
@@ -52,7 +47,7 @@ h1 {
   text-align: center;
   font-size: 3rem;
   margin-bottom: 50px;
-  font-style: italic; /* El toque "Project You" */
+  font-style: italic; 
 }
 
 h2 {
@@ -63,18 +58,17 @@ h2 {
   font-size: 1.8rem;
 }
 
-/* --- 2. BOTONES ESTILIZADOS --- */
 .btn {
   padding: 12px 24px;
   border: none;
-  border-radius: 4px; /* Bordes menos redondos, más elegantes */
+  border-radius: 4px;
   cursor: pointer;
   font-weight: 400;
   font-family: 'Lato', sans-serif;
-  letter-spacing: 1px; /* Espaciado entre letras premium */
+  letter-spacing: 1px; 
   transition: all 0.3s ease;
   font-size: 0.9rem;
-  text-transform: uppercase; /* Botones en mayúsculas */
+  text-transform: uppercase; 
 }
 
 .btn-primary {
@@ -85,7 +79,7 @@ h2 {
 
 .btn-primary:hover {
   background-color: var(--primary-hover);
-  transform: translateY(-2px); /* Pequeña elevación */
+  transform: translateY(-2px); 
   box-shadow: 0 6px 20px rgba(166, 123, 91, 0.4);
 }
 
@@ -109,12 +103,11 @@ h2 {
   padding: 8px 20px;
 }
 
-/* --- 3. BARRA DE NAVEGACIÓN --- */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: transparent; /* Fondo transparente */
+  background: transparent; 
   padding: 0 0 20px 0;
   border-bottom: 1px solid var(--secondary);
   margin-bottom: 40px;
@@ -147,7 +140,6 @@ h2 {
   border-bottom: 2px solid var(--primary);
 }
 
-/* --- 4. FORMULARIOS (Login Minimalista) --- */
 .login-card {
   max-width: 400px;
   margin: 80px auto;
@@ -181,7 +173,6 @@ h2 {
   background-color: white;
 }
 
-/* --- 5. TARJETAS (Clases) --- */
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -191,7 +182,7 @@ h2 {
 .card {
   background: var(--card-bg);
   padding: 30px;
-  border-radius: 2px; /* Esquinas casi rectas */
+  border-radius: 2px; 
   box-shadow: var(--shadow);
   border: 1px solid transparent;
   display: flex;
@@ -221,7 +212,6 @@ h2 {
   gap: 8px;
 }
 
-/* --- 6. LISTA DE RESERVAS --- */
 .booking-list {
   list-style: none;
   padding: 0;
@@ -236,7 +226,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   box-shadow: var(--shadow);
-  border-left: 4px solid var(--success); /* Línea verde salvia */
+  border-left: 4px solid var(--success); 
 }
 
 .badge-confirmed {
@@ -260,11 +250,10 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* --- 7. SELECTOR DE FECHAS (NUEVO) --- */
 .date-selector {
   display: flex;
   gap: 15px;
-  overflow-x: auto; /* Permite scroll lateral en móvil */
+  overflow-x: auto; 
   padding-bottom: 15px;
   margin-bottom: 30px;
   border-bottom: 1px solid var(--secondary);
@@ -279,7 +268,7 @@ h2 {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  flex-shrink: 0; /* Evita que se aplasten */
+  flex-shrink: 0;
 }
 
 .date-tab:hover {

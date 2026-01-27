@@ -3,7 +3,7 @@ import { API_URL } from '../config';
 
 export function YogaClassList({ token }) {
     const [classes, setClasses] = useState([]);
-    const [selectedDateKey, setSelectedDateKey] = useState(null); // Usaremos YYYY-MM-DD como clave
+    const [selectedDateKey, setSelectedDateKey] = useState(null); 
     const [uniqueDays, setUniqueDays] = useState([]); 
     const [error, setError] = useState(null);
 
@@ -13,19 +13,14 @@ export function YogaClassList({ token }) {
             .then(data => {
                 setClasses(data);
                 
-                // --- LÓGICA DE AGRUPACIÓN NUEVA ---
-                // 1. Extraemos solo la parte de la fecha YYYY-MM-DD de cada clase
-                // Esto garantiza que todas las clases del día 27 sean idénticas "2026-01-27"
                 const daysSet = new Set(data.map(c => {
                     return new Date(c.start_time).toISOString().split('T')[0];
                 }));
 
-                // 2. Convertimos el Set (sin duplicados) a Array y lo ordenamos
                 const sortedUniqueDays = [...daysSet].sort();
                 
                 setUniqueDays(sortedUniqueDays);
 
-                // 3. Seleccionamos el primer día disponible
                 if (sortedUniqueDays.length > 0) {
                     setSelectedDateKey(sortedUniqueDays[0]);
                 }
@@ -61,8 +56,7 @@ export function YogaClassList({ token }) {
         }
     };
 
-    // --- FUNCIÓN DE VISUALIZACIÓN ---
-    // Recibe "2026-01-27" y devuelve { dia: "MAR", numero: "27" }
+   
     const getDisplayDate = (dateKey) => {
         if (!dateKey) return { dayName: '', dayNumber: '' };
         const date = new Date(dateKey);
@@ -72,8 +66,7 @@ export function YogaClassList({ token }) {
         };
     };
 
-    // --- FILTRADO ---
-    // Comparamos usando la cadena simple "2026-01-27"
+
     const filteredClasses = classes.filter(c => c.start_time.startsWith(selectedDateKey));
 
     if (error) return <p className="error-msg">❌ {error}</p>;
@@ -81,9 +74,7 @@ export function YogaClassList({ token }) {
 
     return (
         <div>
-            {/* 1. BARRA DE FECHAS (Aquí estaba el problema) */}
             <div className="date-selector">
-                {/* AHORA RECORREMOS "uniqueDays" (7 items), NO "classes" (35 items) */}
                 {uniqueDays.map(dateKey => {
                     const { dayName, dayNumber } = getDisplayDate(dateKey);
                     return (
