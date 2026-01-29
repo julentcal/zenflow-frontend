@@ -516,3 +516,63 @@ h2 {
     width: 100%;
     margin-top: 10px;
 }
+
+/* --- ESTILOS ESPECÍFICOS PARA MIS RESERVAS (Compactos) --- */
+
+.booking-card {
+  min-height: auto !important; /* Quitamos la altura gigante obligatoria */
+  padding: 15px 25px !important; /* Menos relleno (padding) */
+  flex-direction: row !important; /* Obligamos a que sea horizontal */
+  align-items: center;
+  justify-content: space-between;
+  border-left: 5px solid var(--primary); /* Borde decorativo a la izquierda */
+  margin-bottom: 15px;
+}
+
+.booking-card div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; 
+  text-align: left;
+}
+
+.booking-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.booking-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* El nombre del instructor */
+.booking-card .instructor-name {
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* El botón de cancelar (Derecha) */
+.booking-card .btn {
+  width: 125px;
+  margin: 0 !important; 
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  white-space: nowrap; 
+  height: fit-content;
+}
+
+/* Ajuste para móviles: si la pantalla es muy pequeña, que se ponga vertical */
+@media (max-width: 600px) {
+  .booking-card {
+    flex-direction: column !important;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .booking-card .btn {
+    width: 100%; /* Botón ancho completo en móvil */
+  }
+}

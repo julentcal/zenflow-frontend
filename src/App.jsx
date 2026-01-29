@@ -4,7 +4,7 @@ import './App.css';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
-import { Navbar } from './components/NavBar';
+import { Navbar } from './components/NavVar';
 import { Login } from './components/Login';
 import { YogaClassList } from './components/YogaClassList';
 import { MyBookings } from './components/MyBookings';
@@ -27,7 +27,7 @@ function App() {
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-            
+
         </div>
     </AuthProvider>
   );
