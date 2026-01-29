@@ -31,7 +31,6 @@ export function AuthProvider({ children }) {
                 setUser(data); 
 
             } catch (error) {
-                // 👇 ESTA LÍNEA ES LA CLAVE PARA QUE NO SALGA EN ROJO
                 console.error("Error de sesión:", error); 
                 
                 localStorage.removeItem('ACCESS_TOKEN');

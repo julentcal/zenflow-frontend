@@ -58,7 +58,6 @@ h2 {
   font-size: 1.8rem;
 }
 
-/* --- BOTONES BASE --- */
 .btn {
   padding: 12px 24px;
   border: none;
@@ -106,7 +105,6 @@ h2 {
   padding: 8px 20px;
 }
 
-/* --- NAVBAR --- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -144,7 +142,6 @@ h2 {
   border-bottom: 2px solid var(--primary);
 }
 
-/* --- LOGIN --- */
 .login-card {
   max-width: 400px;
   margin: 80px auto;
@@ -178,7 +175,6 @@ h2 {
   background-color: white;
 }
 
-/* --- TARJETAS --- */
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -193,9 +189,9 @@ h2 {
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Mantiene el botón abajo */
+  justify-content: space-between; 
   transition: transform 0.3s ease;
-  min-height: 250px; /* Altura mínima para uniformidad */
+  min-height: 250px; 
 }
 
 .card:hover {
@@ -219,7 +215,6 @@ h2 {
   gap: 8px;
 }
 
-/* --- RESERVAS LISTA (MIS RESERVAS) --- */
 .booking-list {
   list-style: none;
   padding: 0;
@@ -258,7 +253,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* --- SELECTOR DE FECHAS --- */
 .date-selector {
   display: flex;
   gap: 15px;
@@ -307,11 +301,6 @@ h2 {
   margin-top: 5px;
 }
 
-/* ========================================= */
-/* NUEVO: ESTADOS DE CLASES Y BOTONES      */
-/* ========================================= */
-
-/* Mensajes generales */
 .loading-msg, .empty-msg {
   text-align: center;
   width: 100%;
@@ -322,7 +311,6 @@ h2 {
   font-size: 1.2rem;
 }
 
-/* Textos de Estado (Aforo) */
 .status-text {
   font-weight: 700;
   font-size: 0.85rem;
@@ -337,7 +325,7 @@ h2 {
 }
 
 .status-warning {
-  color: #E67E22; /* Naranja quemado que va bien con tu paleta */
+  color: #E67E22; 
 }
 
 .status-success {
@@ -350,7 +338,6 @@ h2 {
   width: 100%;
 }
 
-/* Botón: Reservado (Verde) */
 .btn-reserved {
   background-color: var(--success);
   color: white;
@@ -359,11 +346,10 @@ h2 {
   box-shadow: none;
 }
 .btn-reserved:hover {
-  transform: none; /* No se mueve al pasar el ratón */
+  transform: none; 
   background-color: var(--success);
 }
 
-/* Botón: Completo (Gris) */
 .btn-full {
   background-color: #D6D6D6;
   color: white;
@@ -375,7 +361,6 @@ h2 {
   transform: none;
 }
 
-/* Botón para eventos especiales */
 .btn-special {
   background-color: #d4af37; 
   color: white;
@@ -389,13 +374,11 @@ h2 {
   transform: translateY(-2px);
 }
 
-/* Borde especial para la tarjeta entera */
 .card-special {
   border: 1px solid #e4be44;
   background-color: #fffdf5; 
 }
 
-/* --- NUEVO: BARRA DE SALDO DE BONOS --- */
 .user-balance-bar {
   background-color: white;
   padding: 15px 25px;
@@ -433,9 +416,8 @@ h2 {
   transform: scale(1.1);
 }
 
-/* --- BOTÓN DE COMPRA (Cuando no hay saldo) --- */
 .btn-action-buy {
-  background-color: #8e44ad; /* Un color Púrpura para diferenciar de reservar */
+  background-color: #8e44ad; 
   color: white;
   box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
 }
@@ -445,10 +427,7 @@ h2 {
   transform: translateY(-2px);
 }
 
-/* --- VISTA DE PRECIOS (BuyCredits) --- */
-
 .pricing-grid {
-  /* Hacemos que las columnas sean un poco más estrechas para centrar la atención */
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -461,7 +440,7 @@ h2 {
 
 .pricing-card.featured {
   border: 2px solid var(--primary);
-  transform: scale(1.05); /* Un poco más grande */
+  transform: scale(1.05); 
   z-index: 1;
 }
 
@@ -476,7 +455,7 @@ h2 {
   color: var(--text-muted);
   font-size: 0.9rem;
   margin-bottom: 30px;
-  min-height: 40px; /* Para alinear botones */
+  min-height: 40px; 
 }
 
 .badge-popular {
@@ -493,7 +472,6 @@ h2 {
   letter-spacing: 1px;
 }
 
-/* Animación simple de entrada */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in;
 }

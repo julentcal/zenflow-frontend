@@ -29,10 +29,8 @@ export function Login() {
             const data = await response.json();
 
             if (response.ok) {
-                // 4. ACTUALIZAMOS EL CONTEXTO Y REDIRIGIMOS
-                // La función login del AuthContext ya se encarga del localStorage
                 login(data.access_token); 
-                navigate('/'); // Redirige a la lista de clases
+                navigate('/'); 
             } else {
                 setError(data.message || 'Error al iniciar sesión');
             }

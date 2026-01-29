@@ -1,12 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // <--- 1. Importamos el hook del contexto
+import { useAuth } from '../context/AuthContext'; 
 
-export function Navbar() { // <--- 2. Ya no necesitamos recibir props
+export function Navbar() { 
     const navigate = useNavigate();
-    const { user, logout } = useAuth(); // <--- 3. Sacamos usuario y logout del "aire"
+    const { user, logout } = useAuth(); 
 
     const handleLogout = () => {
-        logout(); // Limpia el token usando la lógica del Contexto
+        logout(); 
         navigate('/'); 
     };
 
@@ -25,13 +25,11 @@ export function Navbar() { // <--- 2. Ya no necesitamos recibir props
                     Mis Bonos
                 </NavLink>
 
-                {/* --- NUEVO: BOTÓN SOLO PARA ADMIN --- */}
-                {/* Usamos 'user?.role' para evitar error si user es null momentáneamente */}
                 {user?.role === 'admin' && (
                     <NavLink 
                         to="/admin" 
                         className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
-                        style={{ color: '#ffd700', fontWeight: 'bold' }} // Color dorado para destacar
+                        style={{ color: '#ffd700', fontWeight: 'bold' }} 
                     >
                         👑 Admin
                     </NavLink>
@@ -39,7 +37,7 @@ export function Navbar() { // <--- 2. Ya no necesitamos recibir props
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                {/* Opcional: Mostrar saldo de bonos aquí también es muy útil */}
+
                 {user && (
                     <span style={{ color: 'white', fontSize: '0.9em' }}>
                         Saldo: {user.credits}

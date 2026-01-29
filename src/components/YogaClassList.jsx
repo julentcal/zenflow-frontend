@@ -1,22 +1,19 @@
 import { useEffect, useState } from 'react';
 import { API_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Importamos el contexto
+import { useAuth } from '../context/AuthContext'; 
 
 export function YogaClassList() {
-    const { token, user } = useAuth(); // Obtenemos token y usuario (con sus créditos)
+    const { token, user } = useAuth(); 
     const navigate = useNavigate();
     
     const [classes, setClasses] = useState([]);
-    // const [userCredits, setUserCredits] = useState(0); // <-- BORRADO (usamos user.credits)
     const [selectedDateKey, setSelectedDateKey] = useState(null); 
     const [uniqueDays, setUniqueDays] = useState([]); 
     const [error, setError] = useState(null);
 
-    // 1. CARGAR DATOS (SOLO CLASES)
     useEffect(() => {
-        // La petición de clases no necesita token obligatoriamente si es pública,
-        // pero si tu backend lo pide, lo incluimos. Si falla el token, el AuthContext ya habrá redirigido.
+
         const headers = { 'Accept': 'application/json' };
         if (token) headers['Authorization'] = `Bearer ${token}`;
 
@@ -34,18 +31,15 @@ export function YogaClassList() {
             setError('No se pudieron cargar los horarios.');
         });
 
-        // BORRADO: fetch(`${API_URL}/user`...) -> Ya lo hace el AuthContext
 
     }, [token]);
 
-    // 2. FUNCIÓN DE RESERVA
     const handleBook = async (classId) => {
         if (!user) {
             alert("Debes iniciar sesión");
             return;
         }
 
-        // Opcional: Confirmación extra si es clase cara
         const clase = classes.find(c => c.id === classId);
         if (clase && clase.credit_cost > 1) {
             const confirm = window.confirm(`Esta es una clase especial y costará ${clase.credit_cost} bonos. ¿Quieres continuar?`);
@@ -58,7 +52,7 @@ export function YogaClassList() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'Authorization': `Bearer ${token}` // Token del contexto
+                    'Authorization': `Bearer ${token}` 
                 },
                 body: JSON.stringify({ yoga_class_id: classId })
             });
@@ -66,14 +60,14 @@ export function YogaClassList() {
             const data = await response.json();
 
             if (response.ok) {
-                alert(`✅ ¡ÉXITO! Reserva confirmada. Te quedan ${data.credits_left} bonos.`);
+                alert(`¡ÉXITO! Reserva confirmada. Te quedan ${data.credits_left} bonos.`);
                 window.location.reload(); 
             } else {
-                alert('❌ ' + (data.message || 'Error al reservar'));
+                alert('' + (data.message || 'Error al reservar'));
             }
         } catch (error) {
             console.error(error);
-            alert('❌ Error de conexión');
+            alert('Error de conexión');
         }
     };
 
@@ -92,15 +86,13 @@ export function YogaClassList() {
 
     const filteredClasses = classes.filter(c => c.start_time.startsWith(selectedDateKey));
 
-    if (error) return <p className="error-msg">❌ {error}</p>;
-    if (classes.length === 0) return <p className="loading-msg">⌛ Cargando horarios...</p>;
+    if (error) return <p className="error-msg"> {error}</p>;
+    if (classes.length === 0) return <p className="loading-msg">Cargando horarios...</p>;
 
-    // Obtenemos los créditos del objeto user, o 0 si aún no ha cargado
     const currentCredits = user ? user.credits : 0;
 
     return (
         <div>
-            {/* SELECTOR DE DÍAS */}
             <div className="date-selector">
                 {uniqueDays.map(dateKey => {
                     const { dayName, dayNumber } = getDisplayDate(dateKey);
@@ -117,7 +109,6 @@ export function YogaClassList() {
                 })}
             </div>
 
-            {/* LISTA DE TARJETAS */}
             <div className="grid-layout">
                 {filteredClasses.length > 0 ? (
                     filteredClasses.map(c => {
@@ -136,16 +127,15 @@ export function YogaClassList() {
 
                         if (isBookedByMe) {
                             btnClass = 'btn btn-reserved';
-                            btnText = '✅ Tu Plaza';
+                            btnText = 'Tu Plaza';
                             isDisabled = true;
                         } 
                         else if (isFull) {
                             btnClass = 'btn btn-full';
-                            btnText = '⛔ Completo';
+                            btnText = 'Completo';
                             isDisabled = true;
                             statusClass = 'status-full'; 
                         } 
-                        // Usamos currentCredits (del contexto) en lugar de userCredits (del estado antiguo)
                         else if (currentCredits < creditCost) {
                             btnClass = 'btn btn-action-buy'; 
                             btnText = `💳 Falta Saldo (${creditCost} créditos)`;

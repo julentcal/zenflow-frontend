@@ -59,7 +59,6 @@ export function MyBookings({ token }) {
         }
     };
 
-    // RENDERIZADO
     if (loading) return <p> Cargando tus reservas...</p>;
     if (bookings.length === 0) return <p> No tienes reservas todavía.</p>;
 

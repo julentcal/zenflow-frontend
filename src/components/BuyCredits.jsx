@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Para el botón de volver
+import { useNavigate } from 'react-router-dom'; 
 import { API_URL } from '../config';
-import { useAuth } from '../context/AuthContext'; // Importamos el contexto
+import { useAuth } from '../context/AuthContext';
 
 export function BuyCredits() {
-    const { token, user } = useAuth(); // Obtenemos token y usuario del contexto
+    const { token, user } = useAuth();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
-    // Ya no necesitamos useEffect para cargar el usuario, lo tenemos en 'user'
 
     const handleBuy = async (packSize, price) => {
         if (!confirm(`¿Confirmar compra del Pack de ${packSize} clases por ${price}€?`)) return;
@@ -19,7 +18,7 @@ export function BuyCredits() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`, // Usamos token del contexto
+                    'Authorization': `Bearer ${token}`, 
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({ pack: packSize })
@@ -29,7 +28,6 @@ export function BuyCredits() {
 
             if (response.ok) {
                 alert(`🎉 ${data.message}\nTu nuevo saldo es: ${data.new_balance} bonos.`);
-                // Recargamos la página para actualizar el contexto y el saldo visualmente
                 window.location.reload();
             } else {
                 alert('Error en la compra: ' + (data.detail || 'Inténtalo de nuevo'));
@@ -48,10 +46,8 @@ export function BuyCredits() {
                 ← Volver a Horarios
             </button>
 
-            {/* BARRA DE SALDO LEÍDA DEL CONTEXTO */}
             <div className="user-balance-bar" style={{ margin: '0 auto 30px', maxWidth: '400px', justifyContent: 'center' }}>
                 <span>Saldo actual:</span>
-                {/* Si user existe mostramos créditos, si no 0 */}
                 <span className="balance-count" style={{ marginLeft: '5px' }}>
                     {user ? user.credits : 0} créditos
                 </span>
@@ -63,7 +59,6 @@ export function BuyCredits() {
             </div>
 
             <div className="grid-layout pricing-grid">
-                {/* OPCIÓN 1: CLASE SUELTA */}
                 <div className="card pricing-card">
                     <h3>Clase Suelta</h3>
                     <div className="price">15€</div>
@@ -77,7 +72,6 @@ export function BuyCredits() {
                     </button>
                 </div>
 
-                {/* OPCIÓN 2: PACK 5 (Destacado) */}
                 <div className="card pricing-card featured">
                     <div className="badge-popular">MÁS POPULAR</div>
                     <h3>Pack 5 Clases</h3>
@@ -92,7 +86,6 @@ export function BuyCredits() {
                     </button>
                 </div>
 
-                {/* OPCIÓN 3: PACK 10 */}
                 <div className="card pricing-card">
                     <h3>Pack 10 Clases</h3>
                     <div className="price">120€</div>
