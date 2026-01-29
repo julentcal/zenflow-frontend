@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { API_URL } from '../config';
+import { useAuth } from '../context/AuthContext'; // <--- 1. Importar Contexto
+import { useNavigate } from 'react-router-dom';   // <--- 2. Importar Navegación
 
-export function Login({ onLoginSuccess }) {
+export function Login() {
+    // 3. Extraemos la función login del contexto y el hook de navegación
+    const { login } = useAuth(); 
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -23,8 +29,10 @@ export function Login({ onLoginSuccess }) {
             const data = await response.json();
 
             if (response.ok) {
-                localStorage.setItem('ACCESS_TOKEN', data.access_token);
-                onLoginSuccess(data.access_token);
+                // 4. ACTUALIZAMOS EL CONTEXTO Y REDIRIGIMOS
+                // La función login del AuthContext ya se encarga del localStorage
+                login(data.access_token); 
+                navigate('/'); // Redirige a la lista de clases
             } else {
                 setError(data.message || 'Error al iniciar sesión');
             }
@@ -65,3 +73,5 @@ export function Login({ onLoginSuccess }) {
         </div>
     );
 }
+
+export default Login;

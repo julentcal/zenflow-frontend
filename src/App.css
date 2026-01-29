@@ -58,6 +58,7 @@ h2 {
   font-size: 1.8rem;
 }
 
+/* --- BOTONES BASE --- */
 .btn {
   padding: 12px 24px;
   border: none;
@@ -69,6 +70,8 @@ h2 {
   transition: all 0.3s ease;
   font-size: 0.9rem;
   text-transform: uppercase; 
+  display: inline-block;
+  text-align: center;
 }
 
 .btn-primary {
@@ -103,6 +106,7 @@ h2 {
   padding: 8px 20px;
 }
 
+/* --- NAVBAR --- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -140,6 +144,7 @@ h2 {
   border-bottom: 2px solid var(--primary);
 }
 
+/* --- LOGIN --- */
 .login-card {
   max-width: 400px;
   margin: 80px auto;
@@ -173,6 +178,7 @@ h2 {
   background-color: white;
 }
 
+/* --- TARJETAS --- */
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -187,8 +193,9 @@ h2 {
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; /* Mantiene el botón abajo */
   transition: transform 0.3s ease;
+  min-height: 250px; /* Altura mínima para uniformidad */
 }
 
 .card:hover {
@@ -212,6 +219,7 @@ h2 {
   gap: 8px;
 }
 
+/* --- RESERVAS LISTA (MIS RESERVAS) --- */
 .booking-list {
   list-style: none;
   padding: 0;
@@ -250,6 +258,7 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* --- SELECTOR DE FECHAS --- */
 .date-selector {
   display: flex;
   gap: 15px;
@@ -296,4 +305,236 @@ h2 {
   font-size: 1.4rem;
   font-family: 'Playfair Display', serif;
   margin-top: 5px;
+}
+
+/* ========================================= */
+/* NUEVO: ESTADOS DE CLASES Y BOTONES      */
+/* ========================================= */
+
+/* Mensajes generales */
+.loading-msg, .empty-msg {
+  text-align: center;
+  width: 100%;
+  margin-top: 40px;
+  color: var(--text-muted);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+/* Textos de Estado (Aforo) */
+.status-text {
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  display: block;
+}
+
+.status-full {
+  color: var(--danger);
+}
+
+.status-warning {
+  color: #E67E22; /* Naranja quemado que va bien con tu paleta */
+}
+
+.status-success {
+  color: var(--success);
+}
+
+
+.card .btn {
+  margin-top: 25px;
+  width: 100%;
+}
+
+/* Botón: Reservado (Verde) */
+.btn-reserved {
+  background-color: var(--success);
+  color: white;
+  cursor: default;
+  opacity: 0.9;
+  box-shadow: none;
+}
+.btn-reserved:hover {
+  transform: none; /* No se mueve al pasar el ratón */
+  background-color: var(--success);
+}
+
+/* Botón: Completo (Gris) */
+.btn-full {
+  background-color: #D6D6D6;
+  color: white;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.btn-full:hover {
+  background-color: #D6D6D6;
+  transform: none;
+}
+
+/* Botón para eventos especiales */
+.btn-special {
+  background-color: #d4af37; 
+  color: white;
+  border: none;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(212, 175, 55, 0.3);
+}
+
+.btn-special:hover {
+  background-color: #b5952f;
+  transform: translateY(-2px);
+}
+
+/* Borde especial para la tarjeta entera */
+.card-special {
+  border: 1px solid #e4be44;
+  background-color: #fffdf5; 
+}
+
+/* --- NUEVO: BARRA DE SALDO DE BONOS --- */
+.user-balance-bar {
+  background-color: white;
+  padding: 15px 25px;
+  border-radius: 30px; 
+  display:flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+  border: 1px solid var(--secondary);
+}
+
+.balance-count {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.btn-small-add {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.btn-small-add:hover {
+  transform: scale(1.1);
+}
+
+/* --- BOTÓN DE COMPRA (Cuando no hay saldo) --- */
+.btn-action-buy {
+  background-color: #8e44ad; /* Un color Púrpura para diferenciar de reservar */
+  color: white;
+  box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
+}
+
+.btn-action-buy:hover {
+  background-color: #732d91;
+  transform: translateY(-2px);
+}
+
+/* --- VISTA DE PRECIOS (BuyCredits) --- */
+
+.pricing-grid {
+  /* Hacemos que las columnas sean un poco más estrechas para centrar la atención */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  text-align: center;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.pricing-card.featured {
+  border: 2px solid var(--primary);
+  transform: scale(1.05); /* Un poco más grande */
+  z-index: 1;
+}
+
+.pricing-card .price {
+  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  color: var(--primary);
+  margin: 20px 0;
+}
+
+.pricing-card .description {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+  min-height: 40px; /* Para alinear botones */
+}
+
+.badge-popular {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Animación simple de entrada */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.admin-form .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.admin-form input, .admin-form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.highlight-box {
+    background-color: #fffdf5;
+    border: 1px solid #d4af37;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 10px;
 }
