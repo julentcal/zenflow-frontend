@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; 
 
-export function Navbar() { 
+function Navbar() { 
     const navigate = useNavigate();
     const { user, logout } = useAuth(); 
 
@@ -37,7 +37,6 @@ export function Navbar() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-
                 {user && (
                     <span style={{ color: 'white', fontSize: '0.9em' }}>
                         Saldo: {user.credits}
