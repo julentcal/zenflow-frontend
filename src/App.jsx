@@ -6,6 +6,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 
 import Navbar from './components/Navbar';
 import { Login } from './components/Login';
+import { Register } from './components/Register';
 import { YogaClassList } from './components/YogaClassList';
 import { MyBookings } from './components/MyBookings';
 import { BuyCredits } from './components/BuyCredits';
@@ -20,7 +21,8 @@ function App() {
             <Navbar /> 
 
             <Routes>
-                <Route path="/login" element={<Login />} />            
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/" element={<YogaClassList />} />
                 <Route path="/mis-reservas" element={<MyBookings />} />
                 <Route path="/comprar-bonos" element={<BuyCredits />} />

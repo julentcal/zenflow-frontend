@@ -68,6 +68,12 @@ export function Login() {
                     Entrar
                 </button>
             </form>
+
+            <div style={{ textAlign: 'center', marginTop: '12px' }}>
+                <button type="button" className="btn" onClick={() => navigate('/register')}>
+                    Crear cuenta
+                </button>
+            </div>
         </div>
     );
 }
