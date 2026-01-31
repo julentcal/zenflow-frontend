@@ -37,15 +37,21 @@ function Navbar() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                {user && (
-                    <span style={{ color: 'white', fontSize: '0.9em' }}>
-                        Saldo: {user.credits}
-                    </span>
-                )}
+                {user ? (
+                    <>
+                        <span style={{ color: 'white', fontSize: '0.9em' }}>
+                            Saldo: {user.credits}
+                        </span>
 
-                <button onClick={handleLogout} className="btn btn-logout">
-                    Cerrar Sesión
-                </button>
+                        <button onClick={handleLogout} className="btn btn-logout">
+                            Cerrar Sesión
+                        </button>
+                    </>
+                ) : (
+                    <NavLink to="/login" className="btn">
+                        Iniciar sesión
+                    </NavLink>
+                )}
             </div>
         </nav>
     );
