@@ -7,6 +7,7 @@ export function BuyCredits() {
     const { token, user } = useAuth();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const isLoggedIn = Boolean(user);
 
 
     const handleBuy = async (packSize, price) => {
@@ -63,13 +64,22 @@ export function BuyCredits() {
                     <h3>Clase Suelta</h3>
                     <div className="price">15€</div>
                     <p className="description">Perfecto para probar.</p>
-                    <button 
-                        className="btn btn-primary" 
-                        onClick={() => handleBuy(1, 15)}
-                        disabled={loading}
-                    >
-                        {loading ? 'Procesando...' : 'Comprar 1 Clase'}
-                    </button>
+                    {isLoggedIn ? (
+                        <button 
+                            className="btn btn-primary" 
+                            onClick={() => handleBuy(1, 15)}
+                            disabled={loading}
+                        >
+                            {loading ? 'Procesando...' : 'Comprar 1 Clase'}
+                        </button>
+                    ) : (
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => navigate('/login')}
+                        >
+                            Iniciar sesión para comprar
+                        </button>
+                    )}
                 </div>
 
                 <div className="card pricing-card featured">
@@ -77,26 +87,44 @@ export function BuyCredits() {
                     <h3>Pack 5 Clases</h3>
                     <div className="price">65€</div>
                     <p className="description">Te ahorras 10€. Ideal para practicar una vez por semana.</p>
-                    <button 
-                        className="btn btn-primary" 
-                        onClick={() => handleBuy(5, 65)}
-                        disabled={loading}
-                    >
-                        {loading ? 'Procesando...' : 'Comprar 5 Clases'}
-                    </button>
+                    {isLoggedIn ? (
+                        <button 
+                            className="btn btn-primary" 
+                            onClick={() => handleBuy(5, 65)}
+                            disabled={loading}
+                        >
+                            {loading ? 'Procesando...' : 'Comprar 5 Clases'}
+                        </button>
+                    ) : (
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => navigate('/login')}
+                        >
+                            Iniciar sesión para comprar
+                        </button>
+                    )}
                 </div>
 
                 <div className="card pricing-card">
                     <h3>Pack 10 Clases</h3>
                     <div className="price">120€</div>
                     <p className="description">Para yoguis comprometidos. Precio más bajo por clase.</p>
-                    <button 
-                        className="btn btn-primary" 
-                        onClick={() => handleBuy(10, 120)}
-                        disabled={loading}
-                    >
-                        {loading ? 'Procesando...' : 'Comprar 10 Clases'}
-                    </button>
+                    {isLoggedIn ? (
+                        <button 
+                            className="btn btn-primary" 
+                            onClick={() => handleBuy(10, 120)}
+                            disabled={loading}
+                        >
+                            {loading ? 'Procesando...' : 'Comprar 10 Clases'}
+                        </button>
+                    ) : (
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => navigate('/login')}
+                        >
+                            Iniciar sesión para comprar
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
