@@ -15,6 +15,22 @@ export function Register() {
         e.preventDefault();
         setError(null);
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError('Introduce un email válido');
+            return;
+        }
+
+        if (password.length < 8 || passwordConfirmation.length < 8) {
+            setError('La contraseña debe tener al menos 8 caracteres');
+            return;
+        }
+
+        if (password !== passwordConfirmation) {
+            setError('Las contraseñas no coinciden');
+            return;
+        }
+
         try {
             const response = await fetch(`${API_URL}/register`, {
                 method: 'POST',
