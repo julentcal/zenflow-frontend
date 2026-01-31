@@ -17,9 +17,11 @@ function Navbar() {
                     Horarios
                 </NavLink>
                 
-                <NavLink to="/mis-reservas" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-                    Mis Reservas
-                </NavLink>
+                {user && (
+                    <NavLink to="/mis-reservas" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+                        Mis Reservas
+                    </NavLink>
+                )}
 
                 <NavLink to="/comprar-bonos" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
                     Mis Bonos
